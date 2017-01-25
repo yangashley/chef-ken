@@ -12,12 +12,12 @@
 
     <div id="nav-bar" class='container'>
       <span class='nav-link'>
-      <% if admin %>
-        <%= link_to "Admin tools" %>
-      </span>
-      <span>
-      <% end %>
       <% if logged_in %>
+        <% if admin? %>
+          <%= link_to "Admin tools" %>
+        </span>
+        <span>
+        <% end %>
         <%= link_to "Profile"%>
       </span>
       <span class='nav-link'>
