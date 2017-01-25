@@ -1,0 +1,20 @@
+<h1>Welcome to Chez Ken</h1>
+
+<table>
+  <tr>
+    <th class="category-button"><%= link_to "Appetizers", category_path("Appetizers") %></th>
+    <th class="category-button"><%= link_to "Salad", category_path("Salads") %></th>
+    <th class="category-button"><%= link_to "Main Dish", category_path("Main Dishes")  %></th>
+    <th class="category-button"><%= link_to "Dessert", category_path("Desserts") %></th>
+  </tr>
+  <% for i in (0..1) %>
+  <tr>
+    <td><%= @appetizers[i].title %></td>
+    <td><%= @salads[i].title %></td>
+    <td><%= @main_dishes[i].title %></td>
+    <td><%= @desserts[i].title %></td>
+  </tr>
+  <% end %>
+
+</table>
+
