@@ -2,9 +2,9 @@
 Client Project - Phase 3, Week 1
 
 # Team
-Rich Richardson
-Vadim Brand
-Ashley Yang
+* Rich Richardson
+* Vadim Brand
+* Ashley Yang
 
 # Team norms
 * Standups (9:15am, 2:15pm, 5:00pm)
