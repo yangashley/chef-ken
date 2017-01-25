@@ -3,7 +3,7 @@ require 'faker'
 # Recipes
 
 20.times do
- recipe_info{
+ recipe_info = {
   title: Faker::Lorem.word,
   category_id: (1..4).to_a.sample,
   user_id: (1..10).to_a.sample,
@@ -41,7 +41,9 @@ end
 # Measures
 20.times do
   measures_info = {
-    name: (1..10).to_a.sample
+  recipe_id: (1..20).to_a.sample,
+  ingredient_id: (1..50).to_a.sample,
+  quantity: (1..10).to_a.sample
   }
   Measure.create(measures_info)
 end

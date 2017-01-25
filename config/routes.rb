@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   post 'signup', to: "users#create"
   get 'profile', to: "users#show"
 
+  root 'categories/#index'
 
 end
