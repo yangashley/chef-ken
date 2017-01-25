@@ -41,7 +41,7 @@ end
 # Measures
 20.times do
   measures_info = {
-    name: Faker::Food.measurement
+    name: (1..10).to_a.sample
   }
   Measure.create(measures_info)
 end
