@@ -1,14 +1,20 @@
 require 'faker'
 
-# Recipes
+# Categories
+Category.create(name: "Appetizers")
+Category.create(name: "Salads")
+Category.create(name: "Main Dishes")
+Category.create(name: "Desserts")
 
+# Recipes
 20.times do
- recipe_info{
+ recipe_info = {
   title: Faker::Lorem.word,
   category_id: (1..4).to_a.sample,
   user_id: (1..10).to_a.sample,
   time: Faker::Time.between(Time.now - 1, Time.now),
-  difficulty: ["easy", "medium", "hard"].sample
+  difficulty: ["easy", "medium", "hard"].sample,
+  directions: Faker::Lorem.sentence
  }
  Recipe.create(recipe_info)
 end
@@ -24,12 +30,6 @@ end
   User.create(user_info)
 end
 
-# Categories
-Category.create(name: "Appetizers")
-Category.create(name: "Salads")
-Category.create(name: "Main Dishes")
-Category.create(name: "Desserts")
-
 # Ingredients
 50.times do
   ingredient_info = {
@@ -41,7 +41,9 @@ end
 # Measures
 20.times do
   measures_info = {
-    name: (1..10).to_a.sample
+  recipe_id: (1..20).to_a.sample,
+  ingredient_id: (1..50).to_a.sample,
+  quantity: (1..10).to_a.sample
   }
   Measure.create(measures_info)
 end
