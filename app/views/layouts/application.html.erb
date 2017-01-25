@@ -22,7 +22,7 @@
         <%= link_to("Register", signup_path)%>
       <% end %>
       </span>
-
+      <span class='nav-link'><%= link_to "Home", "/" %></span>
       <span class='nav-link'>
       <% if logged_in %>
         <%= link_to 'Logout', logout_path, method: :delete %>
