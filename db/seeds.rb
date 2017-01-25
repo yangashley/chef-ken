@@ -4,11 +4,11 @@ require 'faker'
 
 20.times do
  recipe_info{
-  title: ,
+  title: Faker::Lorem.word,
   category_id: (1..4).to_a.sample,
   user_id: (1..10).to_a.sample,
   time: Faker::Time.between(Time.now - 1, Time.now),
-  difficulty: ["easy", "medium", "hard"].sample,
+  difficulty: ["easy", "medium", "hard"].sample
  }
  Recipe.create(recipe_info)
 end
