@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get 'signup', to: "users#new"
   post 'signup', to: "users#create"
   get 'profile', to: "users#show"
+  # get 'friends', to: "users#index"
 
   resources :categories
   root 'categories#index'
