@@ -21,7 +21,6 @@ class RecipesController < ApplicationController
   end
 
   def show
-
     if get_recipe
       if logged_in
         get_recipe
@@ -42,7 +41,6 @@ class RecipesController < ApplicationController
       redirect_to @recipe
     end
   end
-
 
   def destroy
     get_recipe
@@ -69,7 +67,7 @@ class RecipesController < ApplicationController
 
 
   private
-  
+
   def recipe_params
     params.require(:recipe).permit(:title, :category_id, :user_id, :directions, :time, :difficulty)
   end

@@ -1,19 +1,19 @@
-
 <div id="no_access"><%= flash[:no_access] %></div><br>
 
 <article class='container'>
   <% if logged_in %>
     <h1><%= @recipe.title %></h1>
 
+    <h3>Ingredients</h3>
     <% recipe_measures(@recipe) %>
 
     <div>
       <table class='recipe-table'>
         <thead>
           <tr>
-            <th class='row-header'>Ingredient</th>
             <th class='row-header'>Quantity</th>
             <th class='row-header'>Unit</th>
+            <th class='row-header'>Ingredient</th>
           </tr>
         </thead>
         <tbody>
@@ -27,6 +27,11 @@
         </tbody>
       </table>
     </div><br><br>
+
+    <p>Time: <%= @recipe.time %> minutes </p>
+    <p>Difficulty: <%= @recipe.difficulty %></p>
+    <p>Directions: <%= @recipe.directions %></p>
+
     <% if recipe_owner?(@recipe) %>
       <%= link_to 'Edit', edit_category_recipe_path(@recipe) %><br>
       <%= link_to 'Delete', category_recipe_path(@recipe.category, @recipe), method: :delete %>
@@ -36,5 +41,4 @@
   <% end %>
 </article>
 
-<%= link_to "Edit", edit_category_recipe_path(@recipe.category, @recipe) %>
 
