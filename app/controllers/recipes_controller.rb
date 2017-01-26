@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   include SessionsHelper
 
+
   def new
     @recipe = Recipe.new
     get_category
@@ -21,6 +22,13 @@ class RecipesController < ApplicationController
   end
 
   def show
+    if logged_in
+      get_recipe
+      render :show
+    else
+      @error = 'You need to log in to see recipes'
+      render :show
+    end
   end
 
   def edit
@@ -47,4 +55,9 @@ class RecipesController < ApplicationController
   def get_category
     @category = Category.find(params[:category_id])
   end
+
+  def get_recipe
+    @recipe = Recipe.find(params[:id])
+  end
+
 end
