@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  include ApplicationHelper
   include SessionsHelper
   include RecipesHelper
 
@@ -14,14 +15,13 @@ class RecipesController < ApplicationController
     if @recipe.save
       flash.notice = "Your recipe has been added!"
 
-      redirect_to category_path(@category), notice: "You recipe was successfully added!"
+      redirect_to "/categories/#{@category.name}", notice: "You recipe was successfully added!"
     else
       render :new
     end
   end
 
   def show
-
     if get_recipe
       if logged_in
         get_recipe
@@ -36,21 +36,24 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
-    @category = Category.find(@recipe.category_id)
-    if current_user.id != @recipe.user_id
-      flash[:no_access] = "You do not have permission to edit this recipe."
-      redirect_to @recipe
+    if recipe_owner?(@recipe) || admin?
+      @category = Category.find(@recipe.category_id)
+      if current_user.id != @recipe.user_id
+        flash[:no_access] = "You do not have permission to edit this recipe."
+        redirect_to @recipe
+      end
+    else
+      render file: 'public/404.html'
     end
   end
 
-
   def destroy
     get_recipe
-    if recipe_owner?(@recipe)
-      get_recipe
+    if recipe_owner?(@recipe) || admin?
+      @category = @recipe.category
       Recipe.destroy(@recipe)
       flash[:notice] = "The recipe has been deleted."
-      redirect_to @recipe.category
+      redirect_to "/categories/#{@category.name}"
     else
       render file: 'public/404.html'
     end
@@ -69,17 +72,17 @@ class RecipesController < ApplicationController
 
 
   private
-  
+
   def recipe_params
     params.require(:recipe).permit(:title, :category_id, :user_id, :directions, :time, :difficulty)
   end
 
-  # Utilitized when recipes are nested in categories
-  def get_category
-    @category ||= Category.find_by(id: params[:category_id])
-  end
 
   def get_recipe
     @recipe ||= Recipe.find_by(id: params[:id])
+  end
+
+   def get_category
+    @category ||= Category.find_by(id: params[:category_id])
   end
 end

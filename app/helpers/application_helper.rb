@@ -1,4 +1,5 @@
 module ApplicationHelper
+  
   def logout_user
     session[:user_id] = nil
   end
@@ -16,4 +17,9 @@ module ApplicationHelper
   def stars(rating)
     rating.round(1)
   end
+  
+  def get_category_by_name
+    @category ||= Category.find_by(name: params[:id])
+  end
+  
 end

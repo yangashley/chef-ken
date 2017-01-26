@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+  include ApplicationHelper
 
   def index
     @categories = {
@@ -13,5 +14,6 @@ class CategoriesController < ApplicationController
     @category = Category.find_by(name: params[:id])
     @recipes = @category.recipes
   end
+
 
 end
