@@ -1,18 +1,5 @@
 Rails.application.routes.draw do
-  root 'recipes#new'
-
-  get 'recipes/new', to: 'recipes#new'
-
-  post 'recipes/new', to: 'recipes#create'
-  # resources :recipes, only: [:create]
-
-  get 'recipes/show'
-
-  put 'recipes/edit'
-
-  delete 'recipes/destroy'
-
-  get 'recipes/update'
+  root 'categories#index'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -23,6 +10,7 @@ Rails.application.routes.draw do
   get 'profile', to: "users#show"
   # get 'friends', to: "users#index"
 
-  resources :categories
-  root 'categories#index'
+  resources :categories do
+    resources :recipes, except: [:index]
+  end
 end
