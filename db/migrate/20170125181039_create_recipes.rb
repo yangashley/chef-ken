@@ -4,7 +4,7 @@ class CreateRecipes < ActiveRecord::Migration[5.0]
       t.string :title
       t.integer :category_id
       t.integer :user_id
-      t.integer :time
+      t.time :time
       t.string :difficulty
       t.string :directions
 
