@@ -1,6 +1,6 @@
 class RecipesController < ApplicationController
   include SessionsHelper
-
+  include RecipesHelper
 
   def new
     @recipe = Recipe.new
@@ -36,13 +36,14 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    if recipe_owner?
+    get_recipe
+    if recipe_owner?(@recipe)
       get_recipe
       Recipe.destroy(@recipe)
       flash[:notice] = "The recipe has been deleted."
       redirect_to @recipe.category
     else
-
+      render file: 'public/404.html'
     end
   end
 
