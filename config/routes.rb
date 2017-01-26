@@ -1,18 +1,5 @@
 Rails.application.routes.draw do
-  root 'recipes#new'
-
-  get 'recipes/new', to: 'recipes#new'
-
-  post 'recipes/new', to: 'recipes#create'
-  # resources :recipes, only: [:create]
-
-  get 'recipes/show'
-
-  put 'recipes/edit'
-
-  delete 'recipes/destroy'
-
-  get 'recipes/update'
+  root 'categories#index'
 
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -25,10 +12,9 @@ Rails.application.routes.draw do
 
 
   resources :categories do
-    resources :recipes do
+    resources :recipes, except: [:index] do
       resources :measures do
       end
     end
   end
-  # root 'categories#index'
 end
