@@ -58,8 +58,8 @@ RSpec.describe RecipesController, type: :controller do
       @category = Category.create!(name: "Dessert")
       @recipe = Recipe.create!(title: "Banana Bread", category_id: @category.id, user_id: 1, time: 60, difficulty: "Easy", directions: "Mix ingredients. Bake at 350 degrees for 50 minutes.")
 
-      put :update, category_id: @category.id, id: @recipe.id
-      # expect(response).to have_http_status(:success)
+      put :update, category_id: @category.id, id: @recipe.id, "recipe"=> {"title"=>"Bread", "directions"=>"Bake for 55 minutes", "time"=>"60", "difficulty"=>"easy", "category_id"=>"1", "user_id"=>"11"}
+      expect(response).to redirect_to @recipe
     end
   end
 

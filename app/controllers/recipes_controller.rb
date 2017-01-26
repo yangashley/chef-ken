@@ -43,9 +43,6 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-    puts "========================"
-    p recipe_params
-    puts "========================"
 
     if @recipe.update(recipe_params)
       redirect_to @recipe
@@ -59,11 +56,7 @@ class RecipesController < ApplicationController
 
   private
   def recipe_params
-    # params[:recipe][:user_id] = current_user.id
-    # # These two exist but they're not permitted in recipe for some reason. As a result, we have to manually set it here.
-    # params[:recipe][:category_id] = get_category.id
-    # params[:recipe][:difficulty] = params[:difficulty]
-    params.require(:recipe).permit(:title, :category_id, :user_id, :directions, :time, :difficulty)
+    params.require(:recipe).permit(:title, :directions, :time, :difficulty)
   end
 
   # Utilitized when recipes are nested in categories
