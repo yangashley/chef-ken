@@ -24,6 +24,7 @@ class RecipesController < ApplicationController
   def show
     if logged_in
       get_recipe
+      p @recipe = Recipe.find(params[:id])
       render :show
     else
       @error = 'You need to log in to see recipes'
@@ -32,23 +33,30 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    @recipe = Recipe.find(params[:id])
+    @category = Category.find(@recipe.category_id)
+    if current_user.id != @recipe.user_id
+      flash[:no_access] = "You do not have permission to edit this recipe."
+      redirect_to @recipe
+    end
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+
+    if @recipe.update(recipe_params)
+      redirect_to @recipe
+    else
+      render 'edit'
+    end
   end
 
   def destroy
   end
 
-  # Do we need update? What's the difference between #update and #edit?
-  # def update
-  # end
-
   private
-
   def recipe_params
-    params[:recipe][:user_id] = current_user.id
-    # These two exist but they're not permitted in recipe for some reason. As a result, we have to manually set it here.
-    params[:recipe][:category_id] = get_category.id
-    params[:recipe][:difficulty] = params[:difficulty]
-    params.require(:recipe).permit(:title, :category_id, :user_id, :directions, :time, :difficulty)
+    params.require(:recipe).permit(:title, :directions, :time, :difficulty)
   end
 
   # Utilitized when recipes are nested in categories
