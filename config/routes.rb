@@ -8,13 +8,14 @@ Rails.application.routes.draw do
   get 'signup', to: "users#new"
   post 'signup', to: "users#create"
   get 'profile', to: "users#show"
-  # get 'friends', to: "users#index"
+
 
 
   resources :categories do
-    resources :recipes, except: [:index] do
-      resources :measures do
-      end
-    end
+    resources :recipes, except: [:index, :show]
+  end
+
+  resources :recipes, only: [:show] do
+    resources :measures, only: [:new, :create]
   end
 end
