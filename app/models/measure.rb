@@ -14,6 +14,6 @@ class Measure < ApplicationRecord
     else
       u_of_measure = self.units
     end
-    "#{self.quantity} #{u_of_measure} of #{self.ingredient.name}"
+    "#{self.quantity} #{u_of_measure} of #{self.ingredient}"
   end
 end
