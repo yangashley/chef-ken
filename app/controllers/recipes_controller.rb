@@ -15,19 +15,20 @@ class RecipesController < ApplicationController
 
       redirect_to category_path(@category), notice: "You recipe was successfully added!"
     else
-      puts "FAIL"
-      flash.alert = "Please amend the following:"
       render :new
     end
   end
 
   def show
-    if logged_in
-      get_recipe
-      render :show
+    if get_recipe
+      if logged_in
+        get_recipe
+        render :show
+      else
+        render :show
+      end
     else
-      @error = 'You need to log in to see recipes'
-      render :show
+      render file: 'public/404.html'
     end
   end
 
@@ -35,10 +36,14 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    get_recipe
-    Recipe.destroy(@recipe)
-    flash[:notice] = "The recipe has been deleted."
-    redirect_to @recipe.category
+    if recipe_owner?
+      get_recipe
+      Recipe.destroy(@recipe)
+      flash[:notice] = "The recipe has been deleted."
+      redirect_to @recipe.category
+    else
+
+    end
   end
 
   # Do we need update? What's the difference between #update and #edit?
@@ -57,11 +62,12 @@ class RecipesController < ApplicationController
 
   # Utilitized when recipes are nested in categories
   def get_category
-    @category ||= Category.find(params[:category_id])
+    @category ||= Category.find_by(id: params[:category_id])
   end
 
   def get_recipe
-    @recipe ||= Recipe.find(params[:id])
+    @recipe ||= Recipe.find_by(id: params[:id])
   end
+
 
 end
