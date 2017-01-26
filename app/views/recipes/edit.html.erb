@@ -1,4 +1,27 @@
 <h1>Edit Recipe</h1>
 
-<%= render 'form' %>
+<strong><p class='alert'><%= flash.alert %></p></strong>
+<% if @recipe.errors.any? %>
+  <% @recipe.errors.full_messages.each do |error| %>
+  <li class='error'><%= error %></li>
+  <% end %>
+<% end %>
+
+<%= form_for @recipe, url: category_recipe_path do |f| %>
+
+<p><%= f.label :title %></p>
+<p><%= f.text_field :title %></p>
+
+<p><%= f.label :directions %></p>
+<p><%= f.text_area :directions %></p>
+
+<p><%= f.label :time %></p>
+<span><%= f.text_field :time %></span>
+<span><%= f.label "in minutes" %></span>
+
+<p><%= f.label :difficulty %></p>
+<p><%= f.select :difficulty, options_for_select([['easy', 'easy'], ['medium', 'medium'], ['hard', 'hard']], selected: params[:difficulty]) %></p><br>
+
+<%= f.submit %>
+<% end %>
 
