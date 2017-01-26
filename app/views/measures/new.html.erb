@@ -1,0 +1,36 @@
+<div id='new-user-form-wrapper'>
+  <div class='error-container'>
+  <h3 class='errors'><%= flash[:alert]  %><h3>
+
+  <% if @errors %>
+    <ul>
+    <% @errors.each do |error| %>
+      <li><%=error  %></li>
+    <% end %>
+    </ul>
+  <% end %>
+  </div>
+  <div class='recipe-ingredient container'>
+  <% if @recipe.measures %>
+    <h4><%= @recipe.title%></h4>
+    <ul>
+      <% @recipe.measures.each do |ingred| %>
+        <li>
+          <%= ingred.pretty_print_ammount %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  </div>
+
+<%= form_for @measure, url: recipe_measures_path(@recipe) do |f|%>
+ <span> <%= f.label :quantity %>
+  <%= f.text_field :quantity %>
+  <%= f.label :units %>
+  <%= select_tag :units, options_for_select([["Tbs", "Tbs"], ["Cup", "Cup"], ["Pint", "Pint"], ["tsp", "tsp"], ["Quart", "Quart"], ["Gallon", "Gallon"], ["pound", "pound"]]) %>
+  <%= f.label :ingredient %>
+  <%= f.text_field :ingredient %></span>
+
+<%= f.submit "Add ingredient!", class: "button" %>
+<% end %>
+</div>
