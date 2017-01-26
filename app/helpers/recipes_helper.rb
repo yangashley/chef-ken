@@ -1,11 +1,14 @@
 module RecipesHelper
-  def recipe_contents(recipe)
-    # example in progress
+  def recipe_measures(recipe)
+    @ingredients = []
+    @quantities = []
     @units = []
     recipe.measures.each do |contents|
+      @ingredients.push(contents.ingredient)
+      @quantities.push(contents.quantity)
       @units.push(contents.units)
     end
-    @units
+    @single = @ingredients.zip(@quantities, @units)
   end
 
 end
