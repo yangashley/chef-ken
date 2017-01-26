@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   post 'signup', to: "users#create"
   get 'profile', to: "users#show"
   # get 'friends', to: "users#index"
-  resources :ingredients, only: [:new, :create]
+
 
   resources :categories do
     resources :recipes do

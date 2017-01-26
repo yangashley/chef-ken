@@ -9,7 +9,7 @@ class Measure < ApplicationRecord
                           'pound'
                           ]}
   def pretty_print_ammount
-    if self.quantity.to_f > 1.0 && !["Tbs", "tsp"].include?(self.units)
+    unless ["Tbs", "tsp"].include?(self.units) || self.quantity == '1' || self.quantity.start_with?("1/")
       u_of_measure = [self.units, 's'].join
     else
       u_of_measure = self.units
