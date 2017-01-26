@@ -35,7 +35,7 @@ end
   measures_info = {
   recipe_id: (1..20).to_a.sample,
   ingredient: Faker::Food.ingredient,
-  quantity: (1..10).to_a.sample,
+  quantity: (1..10).to_a.sample.to_s,
   units: ['Tbs', 'Cup','Pint','tsp', 'Quart', 'Gallon','pound'].sample
   }
   Measure.create(measures_info)
