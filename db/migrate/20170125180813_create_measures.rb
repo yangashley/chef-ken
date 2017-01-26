@@ -4,6 +4,7 @@ class CreateMeasures < ActiveRecord::Migration[5.0]
       t.integer :recipe_id
       t.integer :ingredient_id
       t.float :quantity
+      t.string :units
 
       t.timestamps
     end
