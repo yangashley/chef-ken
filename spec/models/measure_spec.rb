@@ -13,7 +13,7 @@ RSpec.describe Measure, type: :model do
 
     it 'returns a string of the quant and units of its ingredient' do
       meas_info = { recipe_id: test_recipe.id,
-                  ingredient: 'banana',
+                  ingredient: 'bananas',
                   quantity: 2,
                   units: 'Cup'}
       test_measure = Measure.create!(meas_info)

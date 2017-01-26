@@ -1,6 +1,6 @@
 class Measure < ApplicationRecord
   belongs_to :recipe
-  belongs_to :ingredient
+  # belongs_to :ingredient
   validates :quantity, :presence => true
 
   validates :units, inclusion: {in: [
