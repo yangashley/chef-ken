@@ -7,15 +7,20 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)# category_id: get_category.id
-    p current_user
-    p @recipe
-    puts "ABOVEEEEEEEEEEEEEEEEEEEEEEEEEEE"
-    # if @recipe.save
-    #   flash.notice = "Your recipe has been added!"
+    raise recipe_params.inspect
+    @recipe = Recipe.new(recipe_params)
+    get_category
+    p params
+    puts "ABOVEEEEEEEE"
+    if @recipe.save
+      flash.notice = "Your recipe has been added!"
 
       redirect_to categories_show_path() # Will need to add category_id wildcard
-    # end
+    else
+      puts "FAIL"
+      flash.alert = "Please amend the following:"
+      render :new
+    end
   end
 
   def show
@@ -34,12 +39,14 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    params[:user_id] = current_user.id
-    params.require(:recipe).permit(:title, :category_id, :user_id, :time, :difficulty)
+    raise params.inspect
+    params[:recipe][:user_id] = current_user.id
+    params[:recipe][:category_id] = get_category.id
+    params.require(:recipe).permit(:title, :category_id, :user_id, :directions, :time, :difficulty)
   end
 
   # Utilitized when recipes are nested in categories
   def get_category
-    # @category = Category.find(params: cat_id)
+    @category = Category.find(params[:category_id])
   end
 end

@@ -8,6 +8,10 @@ module SessionsHelper
   end
 
   def admin?
-    current_user.is_ken
+    if current_user != nil
+      current_user.is_ken
+    else
+      false
+    end
   end
 end
