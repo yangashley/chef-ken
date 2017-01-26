@@ -1,28 +1,4 @@
 <h1>Add a Recipe</h1>
 <!-- what path does rails assume without the url? -->
-<strong><p class='alert'><%= flash.alert %></p></strong>
-<% if @recipe.errors.any? %>
-  <% @recipe.errors.full_messages.each do |error| %>
-  <li class='error'><%= error %></li>
-  <% end %>
-<% end %>
+<%= render 'form' %>
 
-<%= form_for @recipe, url: category_recipes_path do |f| %>
-
-<p><%= f.label :title %></p>
-<p><%= f.text_field :title %></p>
-
-<p><%= f.label :directions %></p>
-<p><%= f.text_area :directions %></p>
-
-<p><%= f.label :time %></p>
-<span><%= f.text_field :time %></span>
-<span><%= f.label "in minutes" %></span>
-
-<p><%= f.label :difficulty %></p>
-<p><%= select_tag :difficulty, options_for_select([['easy', 'easy'], ['medium', 'medium'], ['hard', 'hard']]) %></p><br>
-
-<%= f.submit "Add My Recipe!" %>
-
-
-<% end %>
