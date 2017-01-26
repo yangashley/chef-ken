@@ -15,7 +15,7 @@ class RecipesController < ApplicationController
     if @recipe.save
       flash.notice = "Your recipe has been added!"
 
-      redirect_to category_path(@category), notice: "You recipe was successfully added!"
+      redirect_to "/categories/#{@category.name}", notice: "You recipe was successfully added!"
     else
       render :new
     end
@@ -37,10 +37,14 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
-    @category = Category.find(@recipe.category_id)
-    if current_user.id != @recipe.user_id
-      flash[:no_access] = "You do not have permission to edit this recipe."
-      redirect_to @recipe
+    if recipe_owner?(@recipe)
+      @category = Category.find(@recipe.category_id)
+      if current_user.id != @recipe.user_id
+        flash[:no_access] = "You do not have permission to edit this recipe."
+        redirect_to @recipe
+      end
+    else
+      render file: 'public/404.html'
     end
   end
 
@@ -48,10 +52,10 @@ class RecipesController < ApplicationController
   def destroy
     get_recipe
     if recipe_owner?(@recipe)
-      get_recipe
+      @category = @recipe.category
       Recipe.destroy(@recipe)
       flash[:notice] = "The recipe has been deleted."
-      redirect_to @recipe.category
+      redirect_to "/categories/#{@category.name}"
     else
       render file: 'public/404.html'
     end
@@ -78,5 +82,9 @@ class RecipesController < ApplicationController
 
   def get_recipe
     @recipe ||= Recipe.find_by(id: params[:id])
+  end
+
+   def get_category
+    @category ||= Category.find_by(id: params[:category_id])
   end
 end
