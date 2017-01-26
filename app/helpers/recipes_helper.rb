@@ -4,16 +4,16 @@ module RecipesHelper
     @quantities = []
     @units = []
     recipe.measures.each do |contents|
-      @ingredients.push(contents.ingredient)
       @quantities.push(contents.quantity)
       @units.push(contents.units)
+      @ingredients.push(contents.ingredient)
     end
-    @single = @ingredients.zip(@quantities, @units)
+    @single = @quantities.zip(@units, @ingredients)
   end
 
 
   def recipe_owner?(recipe)
-    current_user.id == recipe.user_id
+    session[:user_id] == recipe.user_id
   end
 
 end

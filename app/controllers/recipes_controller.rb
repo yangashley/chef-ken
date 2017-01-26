@@ -22,7 +22,6 @@ class RecipesController < ApplicationController
   end
 
   def show
-
     if get_recipe
       if logged_in
         get_recipe
@@ -47,7 +46,6 @@ class RecipesController < ApplicationController
       render file: 'public/404.html'
     end
   end
-
 
   def destroy
     get_recipe
