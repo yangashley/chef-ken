@@ -21,6 +21,7 @@ class RecipesController < ApplicationController
   end
 
   def show
+
     if get_recipe
       if logged_in
         get_recipe
@@ -34,7 +35,14 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    @recipe = Recipe.find(params[:id])
+    @category = Category.find(@recipe.category_id)
+    if current_user.id != @recipe.user_id
+      flash[:no_access] = "You do not have permission to edit this recipe."
+      redirect_to @recipe
+    end
   end
+
 
   def destroy
     get_recipe
@@ -49,10 +57,20 @@ class RecipesController < ApplicationController
   end
 
 
+  def update
+    @recipe = Recipe.find(params[:id])
+
+    if @recipe.update(recipe_params)
+      redirect_to @recipe
+    else
+      render 'edit'
+    end
+  end
+
+
   private
-
+  
   def recipe_params
-
     params.require(:recipe).permit(:title, :category_id, :user_id, :directions, :time, :difficulty)
   end
 
@@ -64,6 +82,4 @@ class RecipesController < ApplicationController
   def get_recipe
     @recipe ||= Recipe.find_by(id: params[:id])
   end
-
-
 end
