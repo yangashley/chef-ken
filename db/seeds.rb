@@ -41,3 +41,14 @@ end
   Measure.create(measures_info)
 end
 
+# Ratings
+10.times do
+  rating_info = {
+    recipe_id: (1..20).to_a.sample,
+    user_id: (1..10).to_a.sample,
+    stars: (1..5).to_a.sample
+  }
+
+  Rating.create(rating_info)
+end
+
