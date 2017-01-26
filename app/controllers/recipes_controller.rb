@@ -7,15 +7,12 @@ class RecipesController < ApplicationController
   end
 
   def create
-    raise recipe_params.inspect
     @recipe = Recipe.new(recipe_params)
     get_category
-    p params
-    puts "ABOVEEEEEEEE"
     if @recipe.save
       flash.notice = "Your recipe has been added!"
 
-      redirect_to categories_show_path() # Will need to add category_id wildcard
+      redirect_to category_path(@category), notice: "You recipe was successfully added!"
     else
       puts "FAIL"
       flash.alert = "Please amend the following:"
@@ -39,9 +36,10 @@ class RecipesController < ApplicationController
   private
 
   def recipe_params
-    raise params.inspect
     params[:recipe][:user_id] = current_user.id
+    # These two exist but they're not permitted in recipe for some reason. As a result, we have to manually set it here.
     params[:recipe][:category_id] = get_category.id
+    params[:recipe][:difficulty] = params[:difficulty]
     params.require(:recipe).permit(:title, :category_id, :user_id, :directions, :time, :difficulty)
   end
 
