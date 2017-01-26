@@ -35,15 +35,10 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
-    if current_user.id == @recipe.user_id
-      redirect_to edit_category_recipe_path(@recipe)
-    else
+    if current_user.id != @recipe.user_id
       flash[:no_access] = "You do not have permission to edit this recipe."
       redirect_to @recipe
     end
-  end
-
-  def destroy
   end
 
   def update
@@ -55,6 +50,8 @@ class RecipesController < ApplicationController
     end
   end
 
+  def destroy
+  end
   private
 
   def recipe_params
