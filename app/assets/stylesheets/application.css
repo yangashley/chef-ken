@@ -17,5 +17,13 @@
 }
 
 .violation {
-  font: small caps, normal, 20px ;
+  /*font: small caps, normal, 20px, red;*/
+}
+
+.recipe-link {
+  font-size: 16px;
+}
+
+#add-recipe {
+  margin-top: 20px;
 }
