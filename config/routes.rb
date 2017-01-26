@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   get 'profile', to: "users#show"
   # get 'friends', to: "users#index"
 
+
   resources :categories do
-    resources :recipes, except: [:index]
+    resources :recipes, except: [:index] do
+      resources :measures do
+      end
+    end
   end
 end
