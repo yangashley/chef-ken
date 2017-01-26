@@ -35,4 +35,10 @@ RSpec.describe Recipe, type: :model do
       end
     end
   end
+
+  describe 'recipe deletion' do
+    it 'A user can only delete a recipe they created' do
+
+    end
+  end
 end

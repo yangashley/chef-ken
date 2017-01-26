@@ -8,8 +8,9 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
-    get_category
+    @recipe = get_category.recipes.new(recipe_params)
+    current_user.recipes << @recipe
+
     if @recipe.save
       flash.notice = "Your recipe has been added!"
 
@@ -47,17 +48,11 @@ class RecipesController < ApplicationController
     end
   end
 
-  # Do we need update? What's the difference between #update and #edit?
-  # def update
-  # end
 
   private
 
   def recipe_params
-    params[:recipe][:user_id] = current_user.id
-    # These two exist but they're not permitted in recipe for some reason. As a result, we have to manually set it here.
-    params[:recipe][:category_id] = get_category.id
-    params[:recipe][:difficulty] = params[:difficulty]
+
     params.require(:recipe).permit(:title, :category_id, :user_id, :directions, :time, :difficulty)
   end
 

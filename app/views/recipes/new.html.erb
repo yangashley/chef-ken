@@ -21,7 +21,8 @@
   <span><%= f.label "in minutes" %></span>
 
   <p><%= f.label :difficulty %></p>
-  <p><%= select_tag :difficulty, options_for_select([['easy', 'easy'], ['medium', 'medium'], ['hard', 'hard']]) %></p><br>
+  <p><%= f.select :difficulty, options_for_select([['easy', 'easy'], ['medium', 'medium'], ['hard', 'hard']]) %></p><br>
+
 
   <%= f.submit "Add My Recipe!" %>
 
