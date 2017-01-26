@@ -11,4 +11,9 @@ module RecipesHelper
     @single = @ingredients.zip(@quantities, @units)
   end
 
+
+  def recipe_owner?(recipe)
+    current_user.id == recipe.user_id
+  end
+
 end
