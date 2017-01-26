@@ -13,4 +13,7 @@ module ApplicationHelper
     end
   end
 
+  def stars(rating)
+    rating.round(1)
+  end
 end

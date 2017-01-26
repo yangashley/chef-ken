@@ -1,6 +1,0 @@
-module RatingsHelper
-
-  def
-
-
-end

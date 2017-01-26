@@ -5,7 +5,8 @@
         <h3 class="category-button"><%= link_to "Appetizers", category_path("Appetizers") %></h3>
         <% @categories[:apps].each do |recipe| %>
         <div class='category-card'>
-
+          <div class='fav-star'><span class='rating_text'><%=stars(recipe[:rating])  %></span>
+    </div>
           <div class='thumbnail' style="background-image: url(<%=recipe[:image_url] %>)"></div>
           <%=recipe[:title]  %>
         </div>
@@ -19,6 +20,8 @@
         <div class='category-card'>
 
           <p>
+            <div class='fav-star'><span class='rating_text'><%=stars(recipe[:rating])  %></span>
+    </div>
           <div class='thumbnail' style="background-image: url(<%=recipe[:image_url] %>)"></div>
           <%=recipe[:title]  %>
         </p>
@@ -31,9 +34,12 @@
         <h3 class="category-button"><%= link_to "Main Dish", category_path("Main Dishes")  %></h3>
         <% @categories[:mains].each do |recipe| %>
         <div class='category-card'>
-
+          <p>
+          <div class='fav-star'><span class='rating_text'><%=stars(recipe[:rating])  %></span>
+    </div>
           <div class='thumbnail' style="background-image: url(<%=recipe[:image_url] %>)"></div>
           <%=recipe[:title]  %>
+          </p>
         </div>
         <% end %>
       </div>
@@ -43,9 +49,12 @@
         <h3 class="category-button"><%= link_to "Dessert", category_path("Desserts") %></h3>
         <% @categories[:desserts].each do |recipe| %>
         <div class='category-card'>
-
+          <p>
+          <div class='fav-star'><span class='rating_text'><%=stars(recipe[:rating])  %></span>
+    </div>
           <div class='thumbnail' style="background-image: url(<%=recipe[:image_url] %>)"></div>
           <%=recipe[:title]  %>
+          </p>
         </div>
         <% end %>
       </div>

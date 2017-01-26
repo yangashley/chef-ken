@@ -3,6 +3,18 @@
   font-family: 'Bree Serif', serif;
 }
 
+#nav-bar{
+  background-color: #A2D5F2;
+  border-bottom-radius: 10px;
+}
+.nav-link{
+  margin-left: 5em;
+}
+.nav-link:hover{
+  font-size: larger;
+  background-color: white;
+}
+
 .recipe-table {
   width: 40%;
 }
@@ -22,6 +34,9 @@
 }
 .title{
   font-family: 'Lobster', cursive;
+  font-size: 5em;
+  margin: 0 auto;
+  width: 60%;
 }
 
 .wd-17-m{
@@ -35,8 +50,20 @@
 }
 
 div.thumbnail {
+  display: inline-block;
   background-repeat: no-repeat;
   background-size: 4em;
+  margin-bottom: 0;
+  height: 4em;
+  width: 4em;
+}
+
+div.fav-star{
+  display: inline;
+  background-repeat: no-repeat;
+  background-image: url("/assets/fav_star.png");
+  background-size: 2em;
+  opacity: 80%;
   height: 4em;
   width: 4em;
 }
