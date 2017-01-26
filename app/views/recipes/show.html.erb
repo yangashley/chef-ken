@@ -1,42 +1,39 @@
+
 <div id="no_access"><%= flash[:no_access] %></div><br>
 
-<%= @recipe.title %><br>
+<article class='container'>
+  <% if logged_in %>
+    <h1><%= @recipe.title %></h1>
 
-<% recipe_contents(@recipe) %>
-<%= @units %>
-<!-- <div>
-  <h2><%= @recipe.title %></h2>
+    <% recipe_measures(@recipe) %>
 
-  <table>
-    <thead>
-      <tr>
-        <th>@recipe.measures </th>
-        <th>Lastname</th>
-        <th>Email</th>
-        <th>Lastname</th>
-        <th>Email</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>John</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
-      </tr>
-      <tr>
-        <td>Mary</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr>
-        <td>July</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
- -->
+    <div>
+      <table class='recipe-table'>
+        <thead>
+          <tr>
+            <th class='row-header'>Ingredient</th>
+            <th class='row-header'>Quantity</th>
+            <th class='row-header'>Unit</th>
+          </tr>
+        </thead>
+        <tbody>
+            <% @single.each do |measure| %>
+          <tr>
+              <% measure.each do |content_value| %>
+                <td><%= content_value %></td>
+              <% end %>
+          </tr>
+            <% end %>
+        </tbody>
+      </table>
+    </div><br><br>
+
+    <%= link_to 'Edit', edit_category_recipe_path(@recipe) %><br>
+    <%= link_to 'Delete', category_recipe_path(@recipe.category, @recipe), method: :delete %>
+  <% else %>
+    <%= render '/general_use_partials/login_required' %>
+  <% end %>
+</article>
 
 <%= link_to "Edit", edit_category_recipe_path(@recipe.category, @recipe) %>
 

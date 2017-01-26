@@ -6,14 +6,14 @@ class SessionsController < ApplicationController
 
   def create
     @user = User.find_by(email: user_deets[:email])
-    if @user.authenticate(user_deets[:password])
+    if @user && @user.authenticate(user_deets[:password])
       login_user
       flash[:notice] = "Login Successful!"
       redirect_to profile_path(@user)
     else
       flash[:alert] = "Login failed"
       @errors = ["That combination of username and password can't be found"]
-      render :action => 'new'
+      redirect_to :login
     end
   end
 

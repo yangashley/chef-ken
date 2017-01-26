@@ -61,11 +61,11 @@ class RecipesController < ApplicationController
 
   # Utilitized when recipes are nested in categories
   def get_category
-    @category = Category.find(params[:category_id])
+    @category ||= Category.find(params[:category_id])
   end
 
   def get_recipe
-    @recipe = Recipe.find(params[:id])
+    @recipe ||= Recipe.find(params[:id])
   end
 
 end
