@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'measures/new'
+
   root 'categories#index'
 
   get 'login', to: 'sessions#new'
@@ -12,9 +14,10 @@ Rails.application.routes.draw do
 
 
   resources :categories do
-    resources :recipes, except: [:index] do
-      resources :measures do
-      end
-    end
+    resources :recipes, except: [:index, :show]
+  end
+
+  resources :recipes, only: :show do
+    resources :measures, only: [:new, :create]
   end
 end
