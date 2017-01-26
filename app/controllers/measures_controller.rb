@@ -7,7 +7,7 @@ class MeasuresController < ApplicationController
   def create
     @recipe = Recipe.find_by(id: params[:recipe_id])
     @measure = @recipe.measures.new(measure_deets)
-    if @measures.save
+    if @measure.save
       redirect_to new_recipe_measure_path(@recipe)
     else
       raise 'ur dum'
@@ -16,7 +16,7 @@ class MeasuresController < ApplicationController
 
   private
   def measure_deets
-    raise "Here's where you need to pick back up tomorrow"
-    params.require(:measure).permit(:quantity,:units,:ingredient)
+    params[:measure][:units] = params[:units]
+    params.require(:measure).permit(:quantity, :ingredient, :units)
   end
 end
