@@ -35,6 +35,10 @@ class RecipesController < ApplicationController
   end
 
   def destroy
+    get_recipe
+    Recipe.destroy(@recipe)
+    flash[:notice] = "The recipe has been deleted."
+    redirect_to @recipe.category
   end
 
   # Do we need update? What's the difference between #update and #edit?
