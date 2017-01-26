@@ -22,8 +22,10 @@ class RecipesController < ApplicationController
   end
 
   def show
+      puts "HELLLLLLOOOO"
     if logged_in
       get_recipe
+      p @recipe = Recipe.find(params[:id])
       render :show
     else
       @error = 'You need to log in to see recipes'
@@ -32,14 +34,26 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    @recipe = Recipe.find(params[:id])
+    if current_user.id == @recipe.user_id
+      redirect_to edit_category_recipe_path(@recipe)
+    else
+      flash[:no_access] = "You do not have permission to edit this recipe."
+      redirect_to @recipe
+    end
   end
 
   def destroy
   end
 
-  # Do we need update? What's the difference between #update and #edit?
-  # def update
-  # end
+  def update
+    @recipe = Recipe.find(params[:id])
+    if @recipe.update(recipe_params)
+      redirect_to @recipe
+    else
+      render 'edit'
+    end
+  end
 
   private
 
