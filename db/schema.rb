@@ -30,7 +30,8 @@ ActiveRecord::Schema.define(version: 20170125181146) do
   create_table "measures", force: :cascade do |t|
     t.integer  "recipe_id"
     t.integer  "ingredient_id"
-    t.float    "quantity"
+    t.string   "quantity"
+    t.string   "units"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
   end
@@ -47,7 +48,7 @@ ActiveRecord::Schema.define(version: 20170125181146) do
     t.string   "title"
     t.integer  "category_id"
     t.integer  "user_id"
-    t.time     "time"
+    t.integer  "time"
     t.string   "difficulty"
     t.string   "directions"
     t.datetime "created_at",  null: false
