@@ -1,2 +1,8 @@
+<div class='container'>
 <h1>Individual Category</h1>
 <%= flash.notice %>
+
+<% get_category_by_name.recipes.each do |recipe| %>
+  <li class='recipe-link'><%= link_to "#{recipe.title}", recipe_path(recipe) %> </li>
+<% end %>
+</div>

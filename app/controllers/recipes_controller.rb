@@ -1,4 +1,5 @@
 class RecipesController < ApplicationController
+  include ApplicationHelper
   include SessionsHelper
   include RecipesHelper
 
@@ -69,15 +70,11 @@ class RecipesController < ApplicationController
 
 
   private
-  
+
   def recipe_params
     params.require(:recipe).permit(:title, :category_id, :user_id, :directions, :time, :difficulty)
   end
 
-  # Utilitized when recipes are nested in categories
-  def get_category
-    @category ||= Category.find_by(id: params[:category_id])
-  end
 
   def get_recipe
     @recipe ||= Recipe.find_by(id: params[:id])

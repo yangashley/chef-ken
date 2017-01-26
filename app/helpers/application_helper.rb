@@ -13,4 +13,8 @@ module ApplicationHelper
     end
   end
 
+  def get_category_by_name
+    @category ||= Category.find_by(name: params[:id])
+  end
+
 end
