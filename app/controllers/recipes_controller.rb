@@ -22,7 +22,6 @@ class RecipesController < ApplicationController
   end
 
   def show
-      puts "HELLLLLLOOOO"
     if logged_in
       get_recipe
       p @recipe = Recipe.find(params[:id])
@@ -35,6 +34,7 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
+    @category = Category.find(@recipe.category_id)
     if current_user.id != @recipe.user_id
       flash[:no_access] = "You do not have permission to edit this recipe."
       redirect_to @recipe
