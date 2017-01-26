@@ -16,7 +16,8 @@
 <p><%= f.text_area :directions %></p>
 
 <p><%= f.label :time %></p>
-<p><%= select_time prompt: 'Total time in minutes' %></p>
+<span><%= f.text_field :time %></span>
+<span><%= f.label "in minutes" %></span>
 
 <p><%= f.label :difficulty %></p>
 <p><%= select_tag :difficulty, options_for_select([['easy', 'easy'], ['medium', 'medium'], ['hard', 'hard']]) %></p><br>
