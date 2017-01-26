@@ -51,10 +51,15 @@ RSpec.describe RecipesController, type: :controller do
     end
   end
 
-  describe "GET #update" do
+  describe "PUT #update" do
     it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
+      @user = User.create!(name: "Danny", email: "danny@gmail.com", password_digest: "password", is_ken: false)
+      session[:user_id] = @user.id
+      @category = Category.create!(name: "Dessert")
+      @recipe = Recipe.create!(title: "Banana Bread", category_id: @category.id, user_id: 1, time: 60, difficulty: "Easy", directions: "Mix ingredients. Bake at 350 degrees for 50 minutes.")
+
+      put :update, category_id: @category.id, id: @recipe.id
+      # expect(response).to have_http_status(:success)
     end
   end
 
