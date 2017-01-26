@@ -9,12 +9,12 @@ Category.create(name: "Desserts")
 # Recipes
 20.times do
  recipe_info = {
-  title: Faker::Lorem.word,
+  title: [Faker::RockBand.name, Faker::Food.spice].join(" "),
   category_id: (1..4).to_a.sample,
   user_id: (1..10).to_a.sample,
-  time: Faker::Time.between(Time.now - 1, Time.now),
+  time: (1..90).to_a.sample,
   difficulty: ["easy", "medium", "hard"].sample,
-  directions: Faker::Lorem.sentence
+  directions: [Faker::Lorem.paragraph,"\n",Faker::Lorem.paragraph].join(" ")
  }
  Recipe.create(recipe_info)
 end

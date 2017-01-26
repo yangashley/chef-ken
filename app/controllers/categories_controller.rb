@@ -1,14 +1,17 @@
 class CategoriesController < ApplicationController
 
   def index
-    @appetizers = Category.find_by(name: "Appetizers").recipes
-    @salads = Category.find_by(name: "Salads").recipes
-    @main_dishes = Category.find_by(name: "Main Dishes").recipes
-    @desserts = Category.find_by(name: "Desserts").recipes
+    @categories = {
+    apps:  Category.find_by(name: "Appetizers").top_5[0..4],
+    salads:  Category.find_by(name: "Salads").top_5[0..4],
+    mains:  Category.find_by(name: "Main Dishes").top_5[0..4],
+    desserts:  Category.find_by(name: "Desserts").top_5[0..4]
+    }
   end
 
   def show
-    @category = Category.find_by(name: params[:name])
+    @category = Category.find_by(name: params[:id])
+    @recipes = @category.recipes
   end
 
 end

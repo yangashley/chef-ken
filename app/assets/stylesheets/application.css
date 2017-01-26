@@ -1,5 +1,6 @@
 .container {
   margin: 0%, auto;
+  font-family: 'Bree Serif', serif;
 }
 
 .recipe-table {
@@ -18,4 +19,24 @@
 
 .violation {
   font: small caps, normal, 20px ;
+}
+.title{
+  font-family: 'Lobster', cursive;
+}
+
+.wd-17-m{
+  width: 17em;
+}
+
+.mg-0{
+  display: inline-table;
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+div.thumbnail {
+  background-repeat: no-repeat;
+  background-size: 4em;
+  height: 4em;
+  width: 4em;
 }
