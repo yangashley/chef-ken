@@ -1,6 +1,6 @@
 <h1>Add a Recipe</h1>
 <!-- what path does rails assume without the url? -->
-<%= form_for :recipe do |f| %>
+<%= form_for @recipe, url: recipes_new_path do |f| %>
 
 <% if @recipe.errors.any? %>
   <% @recipe.errors.full_messages.each do |error| %>
