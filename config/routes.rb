@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
 
-  # post 'rating', to: 'ratings#create'
-
-  # get 'rating/edit'
-
-  get 'measures/new'
-
   root 'categories#index'
 
   get 'login', to: 'sessions#new'
@@ -15,7 +9,10 @@ Rails.application.routes.draw do
   get 'signup', to: "users#new"
   post 'signup', to: "users#create"
   get 'profile', to: "users#show"
-  get 'users', to: "users#index"
+
+  resources :users, only: :index
+
+  resources :users, only: [:destroy]
 
   resources :categories do
     resources :recipes, except: [:index, :show]
@@ -23,6 +20,7 @@ Rails.application.routes.draw do
 
 
   resources :recipes, only: [:show] do
+    resources :sales, only: [:create, :update]
     resources :ratings, only: [:create, :edit]
     resources :measures, only: [:new, :create]
   end
