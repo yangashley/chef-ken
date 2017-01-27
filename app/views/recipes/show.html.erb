@@ -1,6 +1,7 @@
 <div id="no_access"><%= flash[:no_access] %></div><br>
 
 <article class='container'>
+    <h3><%= flash.notice %></h3>
   <% if logged_in %>
     <h1><%= @recipe.title %></h1>
 
@@ -32,7 +33,6 @@
     <p>Difficulty: <%= @recipe.difficulty %></p>
     <p>Directions: <%= @recipe.directions %></p>
 
-    <p><%= flash.notice %></p>
 
     <b><p>Rating: </p></b>
     <% if @recipe.ratings.any? %>

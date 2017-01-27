@@ -14,7 +14,6 @@ class RecipesController < ApplicationController
     if request.xhr?
       if @recipe.save
         flash.notice = "Your recipe has been added!"
-        puts "STEP 1"
         render partial: 'measures/new', recipe: @recipe
       else
         render :new
