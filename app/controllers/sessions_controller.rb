@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
         login_user
       if admin?
         flash[:notice] = "Login Successful!"
-        redirect_to users_path
+        redirect_to "/"
       else
         flash[:notice] = "Login Successful!"
         redirect_to profile_path(@user)
