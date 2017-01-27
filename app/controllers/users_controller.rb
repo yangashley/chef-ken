@@ -10,6 +10,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+    if admin?
+      @user = User.find_by(id: friend_id)
+    else
+      @user = User.find_by(id: session[:user_id])
+    end
+  end
+
   def new
     @user = User.new
   end
@@ -27,12 +35,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    if admin?
-      @user = User.find_by(id: friend_id)
-    else
-      @user = User.find_by(id: session[:user_id])
-    end
+  def destroy
+    @user = User.find(params[:id])
+    p @user
+    @user.destroy
+
+    redirect_to users_path
   end
 
   private
