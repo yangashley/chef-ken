@@ -1,13 +1,17 @@
 <h3 class='notice'><%= flash[:notice]  %><h3>
 
-<h1>Welcome, <%= @user.name %>!</h1>
+<% if admin? %>
+  <h3>Recipes <%= @user.name %> Posted:</h3>
 
-<h3>Recipes You've Posted:</h3>
+<% else %>
+  <h1>Welcome, <%= @user.name %>!</h1>
+  <h3>Recipes You've Posted:</h3>
+
+<% end %>
 
 <ul>
   <% @user.recipes.each do |recipe| %>
   <li><%= link_to "#{recipe.title}", recipe %></li>
   <% end %>
 </ul>
-
 
