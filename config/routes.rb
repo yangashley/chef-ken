@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
   resources :users, only: :index
 
+  resources :users, only: [:destroy]
+
   resources :categories do
     resources :recipes, except: [:index, :show]
   end
