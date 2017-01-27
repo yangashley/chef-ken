@@ -1,7 +1,7 @@
 <h3 class='notice'><%= flash[:notice]  %><h3>
 
 <% if admin? %>
-  <h3>Recipes <%= @user.name %> Posted:</h3>
+  <h3>Recipes by <%= @user.name %>:</h3>
 
 <% else %>
   <h1>Welcome, <%= @user.name %>!</h1>
