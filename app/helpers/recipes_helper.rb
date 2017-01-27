@@ -16,4 +16,13 @@ module RecipesHelper
     session[:user_id] == recipe.user_id
   end
 
+
+  def get_recipe
+    @recipe ||= Recipe.find_by(id: params[:id])
+  end
+
+  def already_rated?(recipe)
+    !!recipe.ratings.find_by(user_id: current_user.id)
+  end
+
 end

@@ -1,4 +1,9 @@
 .container {
+  margin: 5%, auto;
+  padding-bottom: 5%;
+}
+
+.nav {
   margin: 0%, auto;
   font-family: 'Bree Serif', serif;
 }
@@ -7,9 +12,11 @@
   background-color: #A2D5F2;
   border-bottom-radius: 10px;
 }
+
 .nav-link{
   margin-left: 5em;
 }
+
 .nav-link:hover{
   font-size: larger;
   background-color: white;
@@ -40,6 +47,12 @@
 #add-recipe {
   margin-top: 20px;
 }
+
+
+#recipe-rating {
+  margin: 20px 0px;
+}
+
 .title{
   font-family: 'Lobster', cursive;
   font-size: 5em;
