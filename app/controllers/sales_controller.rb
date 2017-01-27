@@ -9,10 +9,9 @@ class SalesController < ApplicationController
   def create
     @sale = Sale.new(sale_deets)
     @sale.recipe_id = recipe_params[:recipe_id]
-    raise @sale.inspect
     if @sale.save
       flash[:notice] = 'Success!'
-      redirect_to :index
+      redirect_to recipe_sales_path(@sale)
     else
       flash[:alert] = "Save failed!"
       redirect_to :index

@@ -59,9 +59,9 @@
 
   <% if admin?  %>
     <ul>
-    <% @recipe.sales.each do |sale| %>
+    <% @recipe.sales.each do |s| %>
       <li>
-        <%= sale  %>
+        ON: <%= s.created_at %> REPORTED: <%= s.gross_sales  %>
       </li>
     <% end %>
     </ul>
