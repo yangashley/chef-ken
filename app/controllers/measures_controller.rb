@@ -1,14 +1,15 @@
 class MeasuresController < ApplicationController
-  def new
-    @recipe = Recipe.find_by(id: params[:recipe_id])
-    @measure = Measure.new
-  end
+  # def new
+  #   # @recipe = Recipe.find_by(id: params[:recipe_id])
+  #   @measure = Measure.new
+  #   puts "IM IN MESURES"
+  # end
 
   def create
     @recipe = Recipe.find_by(id: params[:recipe_id])
     @measure = @recipe.measures.new(measure_deets)
     if @measure.save
-      redirect_to new_recipe_measure_path(@recipe)
+      redirect_to recipe_path(@recipe)
     else
       raise 'ur dum'
     end
