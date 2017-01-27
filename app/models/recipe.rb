@@ -4,6 +4,7 @@ class Recipe < ApplicationRecord
 
   has_many :measures
   has_many :ratings
+  has_many :sales
   validate :url_format
 
   validates :title, :category_id, :user_id, :time, :difficulty, :directions, presence: true

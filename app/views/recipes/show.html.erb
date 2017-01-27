@@ -56,6 +56,29 @@
   <% else %>
     <%= render '/general_use_partials/login_required' %>
   <% end %>
+
+  <% if admin?  %>
+    <ul>
+    <% @recipe.sales.each do |sale| %>
+      <li>
+        <%= sale  %>
+      </li>
+    <% end %>
+    </ul>
+    <%=form_for :sale do |f|%>
+    <p>
+    <br><%= f.label 'Dish Price' %>
+    <%= f.text_field :sale_price %>
+    <br>
+
+    <%= f.label 'Number of Sales' %>
+    <%= f.text_field :volume %>
+    <br>
+
+    <%= f.submit 'Submit'  %>
+    </p>
+    <% end %>
+<% end %>
 </article>
 
 
