@@ -1,15 +1,19 @@
 class RatingsController < ApplicationController
   include SessionsHelper
+  include RatingsHelper
 
   def create
     get_recipe
+    if !already_rated?(@recipe)
+      @rating = @recipe.ratings.new(rating_params)
+      @rating.update_attributes(user_id: current_user.id)
+      if @rating.save
+        flash[:notice] = "Rating has been recorded."
 
-    @rating = @recipe.ratings.new(rating_params)
-    @rating.update_attributes(user_id: current_user.id)
-    if @rating.save
-      flash[:notice] = "Rating has been recorded."
-
-      redirect_to recipe_path(@recipe)
+        redirect_to recipe_path(@recipe)
+      else
+        render file: 'public/404.html'
+      end
     else
       render file: 'public/404.html'
     end
