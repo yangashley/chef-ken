@@ -48,10 +48,8 @@
       <% end %>
     <% end %>
 
+    <% if recipe_owner?(@recipe) || admin? %>
 
-
-
-    <% if recipe_owner?(@recipe) %>
       <%= link_to "Edit", edit_category_recipe_path(@recipe.category, @recipe) %><br>
       <%= link_to 'Delete', category_recipe_path(@recipe.category, @recipe), method: :delete %>
       <% end %>
@@ -59,5 +57,9 @@
     <%= render '/general_use_partials/login_required' %>
   <% end %>
 </article>
+
+
+
+
 
 
