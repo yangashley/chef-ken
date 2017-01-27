@@ -1,5 +1,10 @@
 .container {
-  margin: 0%, auto;
+  margin: 5%, auto;
+  padding-bottom: 5%;
+}
+
+.nav {
+  margin: 5%, auto;
 }
 
 .recipe-table {
@@ -26,4 +31,8 @@
 
 #add-recipe {
   margin-top: 20px;
+}
+
+#recipe-rating {
+  margin: 20px 0px;
 }

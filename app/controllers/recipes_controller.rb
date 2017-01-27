@@ -24,10 +24,10 @@ class RecipesController < ApplicationController
   def show
     if get_recipe
       if logged_in
-        get_recipe
+        @rating = Rating.new
         render :show
       else
-        render :show
+        render 'general_use_partials/_login_required'
       end
     else
       render file: 'public/404.html'
@@ -75,11 +75,6 @@ class RecipesController < ApplicationController
 
   def recipe_params
     params.require(:recipe).permit(:title, :category_id, :user_id, :directions, :time, :difficulty)
-  end
-
-
-  def get_recipe
-    @recipe ||= Recipe.find_by(id: params[:id])
   end
 
    def get_category

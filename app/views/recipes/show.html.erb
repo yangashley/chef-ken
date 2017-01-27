@@ -32,6 +32,24 @@
     <p>Difficulty: <%= @recipe.difficulty %></p>
     <p>Directions: <%= @recipe.directions %></p>
 
+    <p><%= flash.notice %></p>
+
+    <b><p>Rating: </p></b>
+    <% if @recipe.ratings.any? %>
+      <p id='recipe-rating'><%= recipe_rating(@recipe) %></p><br><br>
+    <% else %>
+      <p>Not yet rated.</p>
+    <% end %>
+    <%= form_for @rating, url: recipe_ratings_path(@recipe) do |f| %>
+
+    <p><%= f.select :stars, options_for_select([['1 STAR', 1.00], ['2 STAR', 2.00], ['3 STAR', 3.00], ['4 STAR', 4.00], ['5 STAR', 5.00]]) %></p><br>
+
+    <%= f.submit "Submit Rating" %>
+
+    <% end %>
+
+
+
     <% if recipe_owner?(@recipe) %>
       <%= link_to "Edit", edit_category_recipe_path(@recipe.category, @recipe) %><br>
       <%= link_to 'Delete', category_recipe_path(@recipe.category, @recipe), method: :delete %>
