@@ -23,7 +23,9 @@ class RecipesController < ApplicationController
 
   def show
     if get_recipe
-      if logged_in
+      if !!admin?
+        redirect_to recipe_sales_path(@recipe)
+      elsif logged_in
         @rating = Rating.new
         render :show
       else
