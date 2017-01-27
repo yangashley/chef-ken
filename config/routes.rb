@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  # post 'rating', to: 'ratings#create'
+
+  # get 'rating/edit'
+
   get 'measures/new'
 
   root 'categories#index'
@@ -18,6 +23,9 @@ Rails.application.routes.draw do
 
 
   resources :recipes, only: [:show] do
+    resources :ratings, only: [:create, :edit]
     resources :measures, only: [:new, :create]
   end
+
+
 end
