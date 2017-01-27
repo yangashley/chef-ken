@@ -7,4 +7,9 @@ module RatingHelper
     average = (total.to_f / recipe.ratings.count.to_f).round(2)
   end
 
+  def already_rated?(recipe)
+    !!recipe.ratings.find_by(user_id: current_user.id)
+  end
+
+
 end

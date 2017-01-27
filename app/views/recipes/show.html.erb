@@ -40,13 +40,14 @@
     <% else %>
       <p>Not yet rated.</p>
     <% end %>
-    <%= form_for @rating, url: recipe_ratings_path(@recipe) do |f| %>
+    <% if !already_rated?(@recipe) %>
+      <%= form_for @rating, url: recipe_ratings_path(@recipe) do |f| %>
 
-    <p><%= f.select :stars, options_for_select([['1 STAR', 1.00], ['2 STAR', 2.00], ['3 STAR', 3.00], ['4 STAR', 4.00], ['5 STAR', 5.00]]) %></p><br>
-
-    <%= f.submit "Submit Rating" %>
-
+      <p><%= f.select :stars, options_for_select([['1 STAR', 1.00], ['2 STAR', 2.00], ['3 STAR', 3.00], ['4 STAR', 4.00], ['5 STAR', 5.00]]) %></p><br>
+      <%= f.submit "Submit Rating" %>
+      <% end %>
     <% end %>
+
 
 
 
