@@ -11,13 +11,22 @@ class RecipesController < ApplicationController
   def create
     @recipe = get_category.recipes.new(recipe_params)
     current_user.recipes << @recipe
-
-    if @recipe.save
-      flash.notice = "Your recipe has been added!"
-
-      redirect_to "/categories/#{@category.name}", notice: "You recipe was successfully added!"
+    if request.xhr?
+      if @recipe.save
+        flash.notice = "Your recipe has been added!"
+        puts "STEP 1"
+        render partial: 'measures/new', recipe: @recipe
+      else
+        render :new
+      end
     else
-      render :new
+      if @recipe.save
+        flash.notice = "Your recipe has been added!"
+
+        redirect_to "/categories/#{@category.name}", notice: "You recipe was successfully added!"
+      else
+        render :new
+      end
     end
   end
 

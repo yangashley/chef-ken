@@ -4,8 +4,6 @@ Rails.application.routes.draw do
 
   # get 'rating/edit'
 
-  get 'measures/new'
-
   root 'categories#index'
 
   get 'login', to: 'sessions#new'

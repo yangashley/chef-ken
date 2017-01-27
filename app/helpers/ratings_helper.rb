@@ -1,4 +1,4 @@
-module RatingHelper
+module RatingsHelper
   def recipe_rating(recipe)
     total = 0
     recipe.ratings.each do |rating|

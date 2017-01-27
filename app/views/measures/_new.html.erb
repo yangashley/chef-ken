@@ -12,7 +12,7 @@
   </div>
   <div class='recipe-ingredient container'>
   <% if @recipe.measures %>
-    <h4><%= @recipe.title%></h4>
+
     <ul>
       <% @recipe.measures.each do |ingred| %>
         <li>
@@ -23,7 +23,7 @@
   <% end %>
   </div>
 
-<%= form_for @measure, url: recipe_measures_path(@recipe) do |f|%>
+<%= form_for Measure.new, url: recipe_measures_path(@recipe) do |f|%>
  <span> <%= f.label :quantity %>
   <%= f.text_field :quantity %>
   <%= f.label :units %>

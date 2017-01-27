@@ -8,22 +8,25 @@
     <% end %>
   <% end %>
 
-  <%= form_for @recipe, url: category_recipes_path do |f| %>
+  <section id='recipe-data'>
+    <%= form_for @recipe, url: category_recipes_path do |f| %>
 
-  <p><%= f.label :title %></p>
-  <p><%= f.text_field :title %></p>
+    <p><%= f.label :title %></p>
+    <p><%= f.text_field :title %></p>
 
-  <p><%= f.label :directions %></p>
-  <p><%= f.text_area :directions %></p>
+    <p><%= f.label :directions %></p>
+    <p><%= f.text_area :directions %></p>
 
-  <p><%= f.label :time %></p>
-  <span><%= f.text_field :time %></span>
-  <span><%= f.label "in minutes" %></span>
+    <p><%= f.label :time %></p>
+    <span><%= f.text_field :time %></span>
+    <span><%= f.label "in minutes" %></span>
 
-  <p><%= f.label :difficulty %></p>
-  <p><%= f.select :difficulty, options_for_select([['easy', 'easy'], ['medium', 'medium'], ['hard', 'hard']]) %></p><br>
+    <p><%= f.label :difficulty %></p>
+    <p><%= f.select :difficulty, options_for_select([['easy', 'easy'], ['medium', 'medium'], ['hard', 'hard']]) %></p><br>
 
-  <%= f.submit "Add My Recipe!" %>
+    <p><%= f.submit "Submit" %></p>
+    <% end %>
+  </section>
 
-  <% end %>
+
 </article>

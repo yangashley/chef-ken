@@ -1,9 +1,10 @@
 class RatingsController < ApplicationController
   include SessionsHelper
+  include RatingsHelper
 
   def create
     get_recipe
-    if !already_rated?
+    if !already_rated?(@recipe)
       @rating = @recipe.ratings.new(rating_params)
       @rating.update_attributes(user_id: current_user.id)
       if @rating.save
