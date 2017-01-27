@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   def index
     if admin?
       @users = User.where(is_ken: false)
+    else
+      flash[:not_admin] = "You do not have permission to view this page."
     end
   end
 
