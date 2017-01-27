@@ -9,7 +9,7 @@
         <div class='category-card'>
           <div class='fav-star'><span class='rating_text'><%=stars(recipe[:rating])  %></span>
     </div>
-          <div class='thumbnail' style="background-image: url(<%=recipe[:image_url] %>)"></div>
+          <a href="/"><div class='thumbnail' style="background-image: url(<%= recipe[:image_url] %>)"></div></a>
           <%=recipe[:title]  %>
         </div>
         <% end %>

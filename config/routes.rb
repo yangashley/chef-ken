@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
 
   resources :recipes, only: [:show] do
-    resources :sales, only: [:create, :update]
+    resources :sales, except: [:show, :delete, :edit, :new]
     resources :ratings, only: [:create, :edit]
     resources :measures, only: [:new, :create]
   end
