@@ -5,8 +5,7 @@
 
 <% else %>
   <h1>Welcome, <%= @user.name %>!</h1>
-  <h3>Recipes You've Posted:</h3>
-
+  <h2>Recipes You've Posted:</h2>
 <% end %>
 
 <ul>
@@ -14,4 +13,5 @@
   <li><%= link_to "#{recipe.title}", recipe %></li>
   <% end %>
 </ul>
+
 
