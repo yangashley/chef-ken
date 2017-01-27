@@ -16,15 +16,7 @@ Category.create(name: "Desserts")
   User.create(user_info)
 end
 
-1.times do
-  user_info = {
-    name: "Ken",
-    email: "ken@gmail.com",
-    password: "password",
-    is_ken: true
-  }
-  User.create(user_info)
-end
+User.create(name: "Ken", email: "ken@gmail.com", password: "password", is_ken: true)
 
 # Recipes
 75.times do
