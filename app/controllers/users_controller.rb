@@ -36,11 +36,15 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = User.find(params[:id])
-    p @user
-    @user.destroy
+    if admin?
+      @user = User.find(params[:id])
+      @user.destroy
 
-    redirect_to users_path
+      redirect_to users_path
+    else
+      flash[:not_admin] = "You do not have permission to view this page."
+      redirect_to "/"
+    end
   end
 
   private
