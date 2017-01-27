@@ -8,11 +8,21 @@
   <h2>Recipes You've Posted:</h2>
 <% end %>
 
-<ul>
+<table>
   <% @user.recipes.each do |recipe| %>
-    <li><%= link_to "#{recipe.title}", recipe %></li>
+   <tr>
+    <td><%= link_to "#{recipe.title}", recipe %></td>
+    <td><%= link_to "Delete", category_recipe_path(recipe.category_id, recipe),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %></td>
+    </tr>
   <% end %>
-</ul>
+</table>
+
+
+
+
+
 
 
 

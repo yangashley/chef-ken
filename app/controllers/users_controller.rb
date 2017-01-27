@@ -43,7 +43,7 @@ class UsersController < ApplicationController
       redirect_to users_path
     else
       flash[:not_admin] = "You do not have permission to view this page."
-      redirect_to "/"
+      redirect_to users_path
     end
   end
 
