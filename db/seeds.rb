@@ -18,8 +18,8 @@ end
 
 1.times do
   user_info = {
-    name: Ken,
-    email: ken@gmail.com,
+    name: "Ken",
+    email: "ken@gmail.com",
     password: "password",
     is_ken: true
   }
