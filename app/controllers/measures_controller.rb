@@ -11,7 +11,7 @@ class MeasuresController < ApplicationController
     if @measure.save
       redirect_to recipe_path(@recipe)
     else
-      raise 'ur dum'
+      raise 'Your measurement failed to save'
     end
   end
 
